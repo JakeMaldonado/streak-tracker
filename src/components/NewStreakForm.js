@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import { Form, DatePicker, Button, Input, Radio } from 'antd';
+import moment from 'moment';
 
 export default class NewStreakForm extends Component {
   state = {
     value: 1,
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.props.newStreak({
+          title: values['Streak Name'],
+          started: moment(values['date-picker'].value).format('LL'),
+          startedObj: moment(values['date-picker'].value),
+          countBy: this.state.value
+        });
+      }
+    });
+  };
+
   onChange = e => {
     this.setState({
-      value: e.target.value,
+      value: e.target.value
     });
   };
 
@@ -37,7 +52,7 @@ export default class NewStreakForm extends Component {
     };
 
     return(
-      <Form {...formItemLayout}>
+      <Form onSubmit={this.handleSubmit} {...formItemLayout}>
         <Form.Item
           label={
             <span>
@@ -47,7 +62,7 @@ export default class NewStreakForm extends Component {
         >
           {getFieldDecorator('Streak Name', {
             rules: [{ required: true, message: 'Please input a streak name!', whitespace: true }],
-          })(<Input size="large" placeholder="Days since I..."/>)}
+          })(<Input size="large" placeholder="Days since I..." style={{ maxWidth: '450px' }}/>)}
         </Form.Item>
         <Form.Item label="Started">
           {getFieldDecorator('date-picker', config)(<DatePicker />)}
@@ -59,7 +74,7 @@ export default class NewStreakForm extends Component {
             </span>
           }
         >
-          <Radio.Group onChange={this.onChange} value={this.state.value}>
+          <Radio.Group onChange={this.onChange} value={this.state.value} buttonStyle="solid">
             <Radio style={radioStyle} value={1}>
               Days
             </Radio>
