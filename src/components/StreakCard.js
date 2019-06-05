@@ -10,8 +10,14 @@ export default class StreakCard extends Component {
   }
 
   render() {
+    const cardStyles = {
+      width: 300,
+      textAlign: 'center',
+      margin: '50px 5%'
+    }
+
     return(
-      <Card title={this.props.title} style={{ width: 300, textAlign: 'center' }}>
+      <Card title={this.props.title} style={ cardStyles }>
         <h1>{this.currentStreak()}</h1>
         <p>Current Streak</p>
         <p>Started: {this.props.startDate}</p>

@@ -4,6 +4,7 @@ import StreakCard from './components/StreakCard';
 import Header from './components/Header';
 import NewStreakForm from './components/NewStreakForm';
 import 'antd/dist/antd.css';
+import logo from './streak.png';
 
 class App extends Component {
   state = {
@@ -25,11 +26,33 @@ class App extends Component {
        });
     }
 
+    const cardStyles = {
+      width: '100%',
+      display: 'flex',
+      flexWrap: 'wrap'
+    }
+
+    const logoStyle = {
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }
+
+    const containerSyle = {
+      width: '300px',
+      height: 'auto'
+    }
+
     return (
       <div className="App">
-        <Header/>
+        <div style={{ textAlign: 'center', width: '100%', margin: '30px 0' }}>
+          <div style={ containerSyle }>
+            <img src={logo} style={ logoStyle } alt='streak main'/>
+          </div>
+        </div>
         <EnterNewStreak newStreak={ newStreak }/>
-        { streakCards() }
+        <div style={ cardStyles }>
+          { streakCards() }
+        </div>
       </div>
     );
   }
