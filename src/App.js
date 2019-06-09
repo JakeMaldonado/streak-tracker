@@ -39,7 +39,11 @@ class App extends Component {
 
     const containerSyle = {
       width: '300px',
-      height: 'auto'
+      height: 'auto',
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '25%'
     }
 
     return (
