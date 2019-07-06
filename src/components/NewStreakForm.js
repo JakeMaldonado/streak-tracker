@@ -13,7 +13,7 @@ export default class NewStreakForm extends Component {
       if (!err) {
         this.props.newStreak({
           title: values['Streak Name'],
-          started: moment(values['date-picker'].value).format('LL'),
+          started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
           countBy: this.state.value
         });

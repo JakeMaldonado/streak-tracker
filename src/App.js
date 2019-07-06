@@ -6,6 +6,25 @@ import NewStreakForm from './components/NewStreakForm';
 import 'antd/dist/antd.css';
 import logo from './streak.png';
 
+const cardStyles = {
+  width: '100%',
+  display: 'flex',
+  flexWrap: 'wrap'
+}
+
+const logoStyle = {
+  maxWidth: '100%',
+  maxHeight: '100%',
+}
+
+const containerSyle = {
+  height: 'auto',
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: '25%'
+}
+
 class App extends Component {
   state = {
     streaks: []
@@ -21,29 +40,9 @@ class App extends Component {
     }
 
     const streakCards = () => {
-       return this.state.streaks.map(streak => {
-         return <StreakCard { ...streak } />
+       return this.state.streaks.map((streak, i) => {
+         return <StreakCard keyID={i} { ...streak } />
        });
-    }
-
-    const cardStyles = {
-      width: '100%',
-      display: 'flex',
-      flexWrap: 'wrap'
-    }
-
-    const logoStyle = {
-      maxWidth: '100%',
-      maxHeight: '100%',
-    }
-
-    const containerSyle = {
-      width: '300px',
-      height: 'auto',
-      display: 'block',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: '25%'
     }
 
     return (
