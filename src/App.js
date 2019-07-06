@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'antd';
 import StreakCard from './components/StreakCard';
-import Header from './components/Header';
 import NewStreakForm from './components/NewStreakForm';
 import 'antd/dist/antd.css';
 import logo from './streak.png';
