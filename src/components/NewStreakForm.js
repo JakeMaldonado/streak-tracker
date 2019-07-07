@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Form, DatePicker, Button, Input, Radio } from 'antd';
-import moment from 'moment';
+import React, { Component } from 'react'
+import { Form, DatePicker, Button, Input, Radio } from 'antd'
+import moment from 'moment'
 
 export default class NewStreakForm extends Component {
   state = {
     value: 1,
-  };
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.newStreak({
@@ -16,19 +16,19 @@ export default class NewStreakForm extends Component {
           started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
           countBy: this.state.value
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   onChange = e => {
     this.setState({
       value: e.target.value
-    });
-  };
+    })
+  }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form
 
     const formItemLayout = {
       labelCol: {
@@ -39,24 +39,24 @@ export default class NewStreakForm extends Component {
         xs: { span: 24 },
         sm: { span: 16 },
       },
-    };
+    }
 
     const config = {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
-    };
+    }
 
     const radioStyle = {
       display: 'block',
       height: '30px',
       lineHeight: '30px',
-    };
+    }
 
     return(
       <Form onSubmit={this.handleSubmit} {...formItemLayout}>
         <Form.Item
           label={
             <span>
-              Streak Name&nbsp;
+              Streak Name&nbsp
             </span>
           }
         >
@@ -70,7 +70,7 @@ export default class NewStreakForm extends Component {
         <Form.Item
           label={
             <span>
-              Count by&nbsp;
+              Count by&nbsp
             </span>
           }
         >
@@ -94,7 +94,6 @@ export default class NewStreakForm extends Component {
           </Button>
         </Form.Item>
       </Form>
-    );
+    )
   }
 }
-

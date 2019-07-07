@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Card } from 'antd';
-import { Button } from 'antd';
-import moment from 'moment';
+import React, { Component } from 'react'
+import { Card } from 'antd'
+import { Button } from 'antd'
+import moment from 'moment'
 
 export default class StreakCard extends Component {
   currentStreak = () => {
-    const startDate = moment(this.props.started);
+    const startDate = moment(this.props.started)
     const currentDate = moment()
     console.log(this.props.started)
     console.log(startDate)
     console.log(currentDate)
     console.log(startDate.diff(currentDate, 'days'))
-    return currentDate.diff(startDate, 'days');
+    return currentDate.diff(startDate, 'days')
   }
 
   render() {

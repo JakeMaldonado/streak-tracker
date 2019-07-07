@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Form } from 'antd';
-import StreakCard from './components/StreakCard';
-import NewStreakForm from './components/NewStreakForm';
-import 'antd/dist/antd.css';
-import logo from './streak.png';
+import React, { Component } from 'react'
+import { Form } from 'antd'
+import StreakCard from './components/StreakCard'
+import NewStreakForm from './components/NewStreakForm'
+import 'antd/dist/antd.css'
+import logo from './streak.png'
 
 const cardStyles = {
   width: '100%',
@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm);
+    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm)
 
     const newStreak = (streakObj) => {
      this.setState({
@@ -41,7 +41,7 @@ class App extends Component {
     const streakCards = () => {
        return this.state.streaks.map((streak, i) => {
          return <StreakCard keyID={i} { ...streak } />
-       });
+       })
     }
 
     return (
@@ -56,8 +56,8 @@ class App extends Component {
           { streakCards() }
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
