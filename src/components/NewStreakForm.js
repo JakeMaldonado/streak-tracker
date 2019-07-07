@@ -56,7 +56,7 @@ export default class NewStreakForm extends Component {
         <Form.Item
           label={
             <span>
-              Streak Name&nbsp
+              Streak Name&nbsp;
             </span>
           }
         >
@@ -70,7 +70,7 @@ export default class NewStreakForm extends Component {
         <Form.Item
           label={
             <span>
-              Count by&nbsp
+              Count by&nbsp;
             </span>
           }
         >
