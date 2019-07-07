@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Form } from 'antd'
 import StreakCard from './components/StreakCard'
 import NewStreakForm from './components/NewStreakForm'
@@ -24,22 +25,13 @@ const containerSyle = {
   width: '25%'
 }
 
-class App extends Component {
-  state = {
-    streaks: []
-  }
+export class App extends Component {
 
   render() {
     const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm)
 
-    const newStreak = (streakObj) => {
-     this.setState({
-       streaks: this.state.streaks.concat(streakObj)
-      })
-    }
-
     const streakCards = () => {
-       return this.state.streaks.map((streak, i) => {
+       return this.props.streaks.map((streak, i) => {
          return <StreakCard keyID={i} { ...streak } />
        })
     }
@@ -51,7 +43,7 @@ class App extends Component {
             <img src={logo} style={ logoStyle } alt='streak main'/>
           </div>
         </div>
-        <EnterNewStreak newStreak={ newStreak }/>
+        <EnterNewStreak />
         <div style={ cardStyles }>
           { streakCards() }
         </div>
@@ -60,4 +52,10 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    streaks: state.streaks
+  }
+}
+
+export default connect(mapStateToProps, undefined)(App)
