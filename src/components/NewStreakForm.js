@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Form, DatePicker, Button, Input, Radio } from 'antd'
 import moment from 'moment'
+import getUserStreak from '../actions/streaks'
 
-export default class NewStreakForm extends Component {
+export class NewStreakForm extends Component {
   state = {
     value: 1,
   }
@@ -11,7 +13,7 @@ export default class NewStreakForm extends Component {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.props.newStreak({
+        this.props.getUserStreak({
           title: values['Streak Name'],
           started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
@@ -97,3 +99,9 @@ export default class NewStreakForm extends Component {
     )
   }
 }
+
+const mapDisptachToProps = (dispatch) => ({
+  getUserStreak: (streakObj) => dispatch(getUserStreak(streakObj))
+})
+
+export default connect(undefined, mapDisptachToProps)(NewStreakForm)
