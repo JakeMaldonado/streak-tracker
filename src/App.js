@@ -27,14 +27,14 @@ const containerSyle = {
 
 export class App extends Component {
 
-  render() {
-    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm)
-
-    const streakCards = () => {
-       return this.props.streaks.map((streak, i) => {
+  streakCards = () => {
+       return this.props.streaks.map((streak) => {
          return <StreakCard key={streak.streakId} { ...streak } />
        })
     }
+
+  render() {
+    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm)
 
     return (
       <div className="App">
@@ -45,7 +45,7 @@ export class App extends Component {
         </div>
         <EnterNewStreak />
         <div style={ cardStyles }>
-          { streakCards() }
+          { this.streakCards() }
         </div>
       </div>
     )
