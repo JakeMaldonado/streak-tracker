@@ -22,7 +22,7 @@ export default class StreakCard extends Component {
     }
 
     return(
-      <Card key={this.props.keyID.toString()} title={this.props.title} style={ cardStyles }>
+      <Card title={this.props.title} style={cardStyles}>
         <h1>{this.currentStreak()}</h1>
         <p>Current Streak</p>
         <p>Started: {this.props.startDate}</p>

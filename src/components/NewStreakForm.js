@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, DatePicker, Button, Input, Radio } from 'antd'
 import moment from 'moment'
+import uuid from 'uuid'
 import getUserStreak from '../actions/streaks'
 
 export class NewStreakForm extends Component {
   state = {
     value: 1,
+    streatId: uuid()
   }
 
   handleSubmit = e => {
@@ -17,7 +19,8 @@ export class NewStreakForm extends Component {
           title: values['Streak Name'],
           started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
-          countBy: this.state.value
+          countBy: this.state.value,
+          streakId: this.state.streatId
         })
       }
     })

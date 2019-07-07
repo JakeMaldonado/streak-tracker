@@ -32,7 +32,7 @@ export class App extends Component {
 
     const streakCards = () => {
        return this.props.streaks.map((streak, i) => {
-         return <StreakCard keyID={i} { ...streak } />
+         return <StreakCard key={streak.streakId} { ...streak } />
        })
     }
 
