@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Form } from 'antd';
-import StreakCard from './components/StreakCard';
-import Header from './components/Header';
-import NewStreakForm from './components/NewStreakForm';
-import 'antd/dist/antd.css';
-import logo from './streak.png';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Form } from 'antd'
+import StreakCard from './components/StreakCard'
+import NewStreakForm from './components/NewStreakForm'
+import 'antd/dist/antd.css'
+import logo from './streak.png'
 
 const cardStyles = {
   width: '100%',
@@ -25,25 +25,16 @@ const containerSyle = {
   width: '25%'
 }
 
-class App extends Component {
-  state = {
-    streaks: []
-  }
+export class App extends Component {
+
+  streakCards = () => {
+       return this.props.streaks.map((streak) => {
+         return <StreakCard key={streak.streakId} { ...streak } />
+       })
+    }
 
   render() {
-    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm);
-
-    const newStreak = (streakObj) => {
-     this.setState({
-       streaks: this.state.streaks.concat(streakObj)
-      })
-    }
-
-    const streakCards = () => {
-       return this.state.streaks.map((streak, i) => {
-         return <StreakCard keyID={i} { ...streak } />
-       });
-    }
+    const EnterNewStreak =  Form.create({ name: 'newStreak' })(NewStreakForm)
 
     return (
       <div className="App">
@@ -52,13 +43,19 @@ class App extends Component {
             <img src={logo} style={ logoStyle } alt='streak main'/>
           </div>
         </div>
-        <EnterNewStreak newStreak={ newStreak }/>
+        <EnterNewStreak />
         <div style={ cardStyles }>
-          { streakCards() }
+          { this.streakCards() }
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    streaks: state.streaks
+  }
+}
+
+export default connect(mapStateToProps, undefined)(App)

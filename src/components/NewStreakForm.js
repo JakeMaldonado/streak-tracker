@@ -1,34 +1,39 @@
-import React, { Component } from 'react';
-import { Form, DatePicker, Button, Input, Radio } from 'antd';
-import moment from 'moment';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Form, DatePicker, Button, Input, Radio } from 'antd'
+import moment from 'moment'
+import uuid from 'uuid'
+import getUserStreak from '../actions/streaks'
 
-export default class NewStreakForm extends Component {
+export class NewStreakForm extends Component {
   state = {
     value: 1,
-  };
+    streatId: uuid()
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.props.newStreak({
+        this.props.getUserStreak({
           title: values['Streak Name'],
           started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
-          countBy: this.state.value
-        });
+          countBy: this.state.value,
+          streakId: this.state.streatId
+        })
       }
-    });
-  };
+    })
+  }
 
   onChange = e => {
     this.setState({
       value: e.target.value
-    });
-  };
+    })
+  }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form
 
     const formItemLayout = {
       labelCol: {
@@ -39,17 +44,17 @@ export default class NewStreakForm extends Component {
         xs: { span: 24 },
         sm: { span: 16 },
       },
-    };
+    }
 
     const config = {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
-    };
+    }
 
     const radioStyle = {
       display: 'block',
       height: '30px',
       lineHeight: '30px',
-    };
+    }
 
     return(
       <Form onSubmit={this.handleSubmit} {...formItemLayout}>
@@ -94,7 +99,12 @@ export default class NewStreakForm extends Component {
           </Button>
         </Form.Item>
       </Form>
-    );
+    )
   }
 }
 
+const mapDisptachToProps = (dispatch) => ({
+  getUserStreak: (streakObj) => dispatch(getUserStreak(streakObj))
+})
+
+export default connect(undefined, mapDisptachToProps)(NewStreakForm)
