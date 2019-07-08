@@ -8,7 +8,7 @@ import getUserStreak from '../actions/streaks'
 export class NewStreakForm extends Component {
   state = {
     value: 1,
-    streatId: uuid()
+    streakId: uuid()
   }
 
   handleSubmit = e => {
@@ -20,7 +20,7 @@ export class NewStreakForm extends Component {
           started: moment(values['date-picker']).format('LL'),
           startedObj: moment(values['date-picker'].value),
           countBy: this.state.value,
-          streakId: this.state.streatId
+          streakId: this.state.streakId
         })
       }
     })
